@@ -1,4 +1,4 @@
-const productLocalStorage = JSON.parse(localStorage.getItem("Panier"));
+let productLocalStorage = JSON.parse(localStorage.getItem("Panier"));
 let totalQuantity = 0;
 let totalPrice = 0;
 let cart = [];
@@ -146,7 +146,8 @@ function cartContent() {
 
         products.forEach((product) => {
           if (product._id === cartProduct.id) {
-            cartProduct.price = product.price * productLocalStorage[i].quantity;
+            productLocalStorage.price =
+              product.price * productLocalStorage.quantity;
             cart.push(cartProduct);
             displayImage(product, i);
             displayProductContent(i);
