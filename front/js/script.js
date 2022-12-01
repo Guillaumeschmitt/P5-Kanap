@@ -1,3 +1,4 @@
+// on recupere les donner de l'api via fetch
 fetch("http://localhost:3000/api/products/")
   .then((test) => test.json())
   .then((data) => {
@@ -27,6 +28,7 @@ fetch("http://localhost:3000/api/products/")
       newLien.href = `http://127.0.0.1:5500/front/html/product.html?id=${data[i]._id}`;
     }
   })
+  // message en cas indisponibiliter des produits
   .catch((err) => {
     let messErr = document.createElement("h3");
     let item = document.getElementById("items");

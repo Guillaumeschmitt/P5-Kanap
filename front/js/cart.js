@@ -1,9 +1,11 @@
+//recuperation du panier dans le local storage
 let productLocalStorage = JSON.parse(localStorage.getItem("Panier"));
 let totalQuantity = 0;
 let totalPrice = 0;
 let cart = [];
 const sectionCard = document.querySelector("#cart__items");
 
+//Ajout des fonction pour l'affichage des products sur le DOM
 function displayProduct() {
   const article = document.createElement("article");
   article.classList = "cart__item";
@@ -70,6 +72,7 @@ function displayQuantity(i, product) {
   );
 }
 
+//modification des quantite et du DOM via l'ecouteur d'evenement
 function updateQuantity(i, newQuantity, product) {
   let oldQuantity = productLocalStorage[i].quantity;
   productLocalStorage[i].quantity = Number(newQuantity);
@@ -95,7 +98,7 @@ function displayDelete(i, product) {
   div.appendChild(text);
   div.addEventListener("click", (e) => deleteProduct(e, product));
 }
-
+//suppresion du product sur le DOM et du local storage
 function deleteProduct(e, product) {
   let oldQuantity = e.target.closest(".cart__item__content__settings")
     .firstChild.lastChild.value;
@@ -137,6 +140,7 @@ function displayTotalPrice(product, i) {
   spanTotalPrice.innerText = totalPrice;
 }
 
+//recuperation des product via l'API
 function cartContent() {
   fetch("http://localhost:3000/api/products")
     .then((res) => res.json())
@@ -163,6 +167,7 @@ function cartContent() {
     });
 }
 
+//verification des champs du formulaire
 function formulaire(cart, i) {
   let firstAndLastName = /[a-zA-Zàéèâêäëçù-]{2,}/m;
   let addressReg = /[\w\W\sàéèâêäëçù]{3,}/m;

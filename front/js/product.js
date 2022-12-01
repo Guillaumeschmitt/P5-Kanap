@@ -1,10 +1,11 @@
+//recuperation de l'ID du product
 let params = new URLSearchParams(document.location.search);
 let idUrl = params.get("id");
 
 fetch(`http://localhost:3000/api/products/${idUrl}`)
   .then((response) => response.json())
   .then((res) => data(res));
-
+//Ajout des different information du products
 function data(kanapData) {
   const kanapImg = document.querySelector(".item__img");
   const kanapPhoto = document.createElement("img");
