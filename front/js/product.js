@@ -6,6 +6,8 @@ fetch(`http://localhost:3000/api/products/${idUrl}`)
   .then((response) => response.json())
   .then((res) => data(res));
 //Ajout des different information du products
+
+//Affichage de l'image du produit
 function data(kanapData) {
   const kanapImg = document.querySelector(".item__img");
   const kanapPhoto = document.createElement("img");
@@ -15,6 +17,7 @@ function data(kanapData) {
   name(kanapData);
 }
 
+//Affichage du nom du produit
 function name(kanapData) {
   const kanapName = document.querySelector("#title");
   const kanapTitle = document.querySelector("title");
@@ -23,18 +26,20 @@ function name(kanapData) {
   price(kanapData);
 }
 
+//Affichage du prix du produit
 function price(kanapData) {
   const kanapPrice = document.querySelector("#price");
   kanapPrice.innerText = kanapData.price;
   description(kanapData);
 }
 
+//Affichage de la description du produit
 function description(kanapData) {
   const kanapDescription = document.querySelector("#description");
   kanapDescription.innerText = kanapData.description;
   color(kanapData);
 }
-
+//Affichage de la couleur du produit
 function color(kanapData) {
   for (let i of kanapData.colors) {
     let newOption = document.createElement("option");
@@ -45,12 +50,14 @@ function color(kanapData) {
   }
 }
 
+//fonction pour rajouter des produits au panier
 function addPanier(product, newProduct) {
   newProduct.push(product);
   localStorage.setItem("Panier", JSON.stringify(newProduct));
   return newProduct;
 }
 
+//creation du bouton avec un ecouteur d'evenement
 let button = document.querySelector("#addToCart");
 button.addEventListener("click", () => {
   const color = document.querySelector("#colors").value;

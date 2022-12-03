@@ -294,8 +294,7 @@ function prePostOrder(stringOrder) {
   fetch("http://localhost:3000/api/products/order", stringOrder)
     .then((res) => res.json())
     .then((data) => {
-      localStorage.setItem("orderId", data.orderId),
-        (document.location.href = "confirmation.html?id=" + data.orderId);
+      document.location.href = "confirmation.html?id=" + data.orderId;
     });
 }
 cartContent();
