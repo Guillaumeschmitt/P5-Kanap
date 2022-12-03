@@ -50,6 +50,7 @@ function displaySettings(i) {
   document.querySelectorAll(".cart__item__content")[i].appendChild(div);
 }
 
+//affichage de la quantite
 function displayQuantity(i, product) {
   const div = document.createElement("div");
   div.classList = "cart__item__content__settings__quantity";
@@ -67,6 +68,7 @@ function displayQuantity(i, product) {
   input.max = 100;
   input.value = productLocalStorage[i].quantity;
   div.appendChild(input);
+  //ecouteur d'evenement pour modufier la quantite
   input.addEventListener("change", () =>
     updateQuantity(i, input.value, product)
   );
@@ -96,6 +98,7 @@ function displayDelete(i, product) {
   text.classList = "deleteItem";
   text.innerText = "Supprimer";
   div.appendChild(text);
+  //ecouteur d'evenement pour supprimer un produit
   div.addEventListener("click", (e) => deleteProduct(e, product));
 }
 //suppresion du product sur le DOM et du local storage
