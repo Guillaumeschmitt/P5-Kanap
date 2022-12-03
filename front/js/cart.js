@@ -76,16 +76,20 @@ function displayQuantity(i, product) {
 
 //modification des quantite et du DOM via l'ecouteur d'evenement
 function updateQuantity(i, newQuantity, product) {
-  let oldQuantity = productLocalStorage[i].quantity;
-  productLocalStorage[i].quantity = Number(newQuantity);
-  localStorage.setItem("Panier", JSON.stringify(productLocalStorage));
-  let totalQuantite = document.querySelector("#totalQuantity");
-  totalQuantity += newQuantity - oldQuantity;
-  totalQuantite.innerText = totalQuantity;
+  if (newQuantity == 0 || newQuantity > 100 || newQuantity < 0) {
+    alert("Veuillez sélectionner une couleur et une quantité valide svp");
+  } else {
+    let oldQuantity = productLocalStorage[i].quantity;
+    productLocalStorage[i].quantity = Number(newQuantity);
+    localStorage.setItem("Panier", JSON.stringify(productLocalStorage));
+    let totalQuantite = document.querySelector("#totalQuantity");
+    totalQuantity += newQuantity - oldQuantity;
+    totalQuantite.innerText = totalQuantity;
 
-  let totalPrix = document.querySelector("#totalPrice");
-  totalPrice += product.price * (newQuantity - oldQuantity);
-  totalPrix.innerText = totalPrice;
+    let totalPrix = document.querySelector("#totalPrice");
+    totalPrice += product.price * (newQuantity - oldQuantity);
+    totalPrix.innerText = totalPrice;
+  }
 }
 
 function displayDelete(i, product) {
